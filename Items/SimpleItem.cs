@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace csharp.Items
+﻿namespace csharp.Items
 {
     /// <summary>
     /// Simple item. Once the sell by date has passed, Quality degrades twice as fast

@@ -1,6 +1,5 @@
 ﻿using csharp.Items;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace csharp
 {
@@ -59,6 +58,17 @@ namespace csharp
             //"Conjured" items degrade in Quality twice as fast as normal items
             //not implemented in original version. should fail
             Assert.AreEqual(3, i.Quality);
+        }
+
+        [Test]
+        public void Cloning()
+        {
+            Item original = new Item { Name = "Conjured Mana Cake", SellIn = 2, Quality = 5 };
+            CustomisableItem cloned = new CustomisableItem();
+            cloned.Clone(original);
+            Assert.AreEqual(original.Name, cloned.Name);
+            Assert.AreEqual(original.SellIn, cloned.SellIn);
+            Assert.AreEqual(original.Name, cloned.Name);
         }
     }
 }

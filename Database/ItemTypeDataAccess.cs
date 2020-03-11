@@ -1,9 +1,6 @@
 ﻿using csharp.Items;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace csharp.Database
 {
@@ -11,6 +8,8 @@ namespace csharp.Database
     {
         public IList<CustomisableItem> GetAllItems()
         {
+            //loads mock item types
+
             IList<CustomisableItem> Items = new List<CustomisableItem>
             {
                 new SimpleItem {Name = "+5 Dexterity Vest"},
