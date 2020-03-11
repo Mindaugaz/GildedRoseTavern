@@ -12,78 +12,66 @@ namespace csharp
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var i in Items)
             {
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (i.Name == "Sulfuras, Hand of Ragnaros")
                 {
-                    if (Items[i].Quality > 0)
-                    {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            Items[i].Quality = Items[i].Quality - 1;
-                        }
-                    }
+                    continue;
+                }
+
+                if (i.Name != "Aged Brie" && i.Name != "Backstage passes to a TAFKAL80ETC concert")
+                {
+                    i.Quality = DecreaseQuality(i.Quality);
                 }
                 else
                 {
-                    if (Items[i].Quality < 50)
+                    i.Quality = IncreaseQuality(i.Quality);
+                    if (i.Name == "Backstage passes to a TAFKAL80ETC concert")
                     {
-                        Items[i].Quality = Items[i].Quality + 1;
-
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (i.SellIn < 11)
                         {
-                            if (Items[i].SellIn < 11)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
+                            i.Quality = IncreaseQuality(i.Quality);
+                        }
 
-                            if (Items[i].SellIn < 6)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
+                        if (i.SellIn < 6)
+                        {
+                            i.Quality = IncreaseQuality(i.Quality);
                         }
                     }
                 }
 
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                i.SellIn--;
+                if (i.SellIn < 0)
                 {
-                    Items[i].SellIn = Items[i].SellIn - 1;
-                }
-
-                if (Items[i].SellIn < 0)
-                {
-                    if (Items[i].Name != "Aged Brie")
+                    if (i.Name != "Aged Brie")
                     {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+                        if (i.Name != "Backstage passes to a TAFKAL80ETC concert")
                         {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                }
-                            }
+                            i.Quality = DecreaseQuality(i.Quality);
                         }
                         else
                         {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
+                            i.Quality = 0;
                         }
                     }
                     else
                     {
-                        if (Items[i].Quality < 50)
-                        {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
+                        i.Quality = IncreaseQuality(i.Quality);
                     }
                 }
             }
+        }
+
+        private int IncreaseQuality(int quality)
+        {
+            quality++;
+            return quality > 50 ? 50 : quality;
+        }
+
+        private int DecreaseQuality(int quality)
+        {
+            quality--;
+            return quality < 0 ? 0 : quality;
         }
     }
 }
