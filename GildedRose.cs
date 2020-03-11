@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using csharp.Items;
+using System.Collections.Generic;
 
 namespace csharp
 {
@@ -12,66 +13,37 @@ namespace csharp
 
         public void UpdateQuality()
         {
-            foreach (var i in Items)
+            for(int i=0; i<Items.Count; i++)
             {
-                if (i.Name == "Sulfuras, Hand of Ragnaros")
+                switch (Items[i].Name)
                 {
-                    continue;
-                }
-
-                if (i.Name != "Aged Brie" && i.Name != "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    i.Quality = DecreaseQuality(i.Quality);
-                }
-                else
-                {
-                    i.Quality = IncreaseQuality(i.Quality);
-                    if (i.Name == "Backstage passes to a TAFKAL80ETC concert")
-                    {
-                        if (i.SellIn < 11)
-                        {
-                            i.Quality = IncreaseQuality(i.Quality);
-                        }
-
-                        if (i.SellIn < 6)
-                        {
-                            i.Quality = IncreaseQuality(i.Quality);
-                        }
-                    }
-                }
-
-                i.SellIn--;
-                if (i.SellIn < 0)
-                {
-                    if (i.Name != "Aged Brie")
-                    {
-                        if (i.Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            i.Quality = DecreaseQuality(i.Quality);
-                        }
-                        else
-                        {
-                            i.Quality = 0;
-                        }
-                    }
-                    else
-                    {
-                        i.Quality = IncreaseQuality(i.Quality);
-                    }
-                }
-            }
-        }
-
-        private int IncreaseQuality(int quality)
-        {
-            quality++;
-            return quality > 50 ? 50 : quality;
-        }
-
-        private int DecreaseQuality(int quality)
-        {
-            quality--;
-            return quality < 0 ? 0 : quality;
+                    case "Sulfuras, Hand of Ragnaros":
+                        LegendaryItem l = new LegendaryItem(Items[i]);
+                        l.ChangeQuality();
+                        Items[i] = l;
+                        break;
+                    case "Aged Brie":
+                        AgingItem a = new AgingItem(Items[i]);
+                        a.ChangeQuality();
+                        Items[i] = a;
+                        break;
+                    case "Backstage passes to a TAFKAL80ETC concert":
+                        TicketItem t = new TicketItem(Items[i]);
+                        t.ChangeQuality();
+                        Items[i] = t;
+                        break;
+                    case "Conjured Mana Cake":
+                        ConjuredItem c = new ConjuredItem(Items[i]);
+                        c.ChangeQuality();
+                        Items[i] = c;
+                        break;
+                    default:
+                        SimpleItem s = new SimpleItem(Items[i]);
+                        s.ChangeQuality();
+                        Items[i] = s;
+                        break;
+                }                
+            }               
         }
     }
 }
