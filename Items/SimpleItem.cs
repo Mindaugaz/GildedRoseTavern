@@ -11,9 +11,7 @@ namespace csharp.Items
     /// The Quality of an item is never negative
     /// </summary>
     public class SimpleItem : CustomisableItem
-    {
-        public SimpleItem(Item i) : base(i) { }
-        
+    {        
         public override void ChangeQuality()
         {
             DecreaseQuality(1);

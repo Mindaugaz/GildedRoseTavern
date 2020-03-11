@@ -11,8 +11,6 @@ namespace csharp.Items
     /// </summary>
     public class ConjuredItem : CustomisableItem
     {
-        public ConjuredItem(Item i) : base(i) { }
-
         public override void ChangeQuality()
         {
             DecreaseQuality(2);

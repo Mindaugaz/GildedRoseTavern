@@ -63,6 +63,9 @@
   <ItemGroup>
     <Compile Include="ApprovalTest.cs" />
     <Compile Include="CustomisableItemTest.cs" />
+    <Compile Include="Database\IDataAccess.cs" />
+    <Compile Include="Database\ItemTypeDataAccess.cs" />
+    <Compile Include="ItemTypeFactory.cs" />
     <Compile Include="GildedRose.cs" />
     <Compile Include="GildedRoseTest.cs" />
     <Compile Include="Item.cs" />

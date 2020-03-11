@@ -11,8 +11,6 @@ namespace csharp.Items
     /// </summary>
     public class LegendaryItem : CustomisableItem
     {
-        public LegendaryItem(Item i) : base(i) { }
-
         public override void ChangeQuality()
         {
             //nothing to do here

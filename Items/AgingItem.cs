@@ -11,8 +11,6 @@ namespace csharp.Items
     /// </summary>
     public class AgingItem : CustomisableItem
     {
-        public AgingItem(Item i) : base(i) { }
-
         public override void ChangeQuality()
         {
             //FIX: it should increase quality only ONCE according to documentation
