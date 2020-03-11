@@ -6,25 +6,21 @@ using System.Threading.Tasks;
 
 namespace csharp.Items
 {
+    /// <summary>
+    /// Simple item. Once the sell by date has passed, Quality degrades twice as fast
+    /// The Quality of an item is never negative
+    /// </summary>
     public class SimpleItem : CustomisableItem
     {
         public SimpleItem(Item i) : base(i) { }
-
-        /// <summary>
-        /// Once the sell by date has passed, Quality degrades twice as fast
-        /// The Quality of an item is never negative
-        /// </summary>
-        public void ChangeQuality()
+        
+        public override void ChangeQuality()
         {
-            if (Quality > 0)
-            {
-                Quality--;
-            }
-
+            DecreaseQuality(1);
             SellIn--;
-            if (SellIn < 0 && Quality > 0)
+            if (SellIn < 0)
             {
-                Quality--;
+                DecreaseQuality(1);
             }
         }
     }

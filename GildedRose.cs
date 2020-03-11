@@ -15,6 +15,7 @@ namespace csharp
         {
             for(int i=0; i<Items.Count; i++)
             {
+                //need to use factory for identifying item type
                 switch (Items[i].Name)
                 {
                     case "Sulfuras, Hand of Ragnaros":

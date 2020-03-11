@@ -14,5 +14,19 @@ namespace csharp.Items
             this.Quality = i.Quality;
             this.SellIn = i.SellIn;
         }
+
+        public virtual void ChangeQuality() { }
+
+        public void IncreaseQuality(int increment)
+        {
+            this.Quality = this.Quality + increment;
+            this.Quality = this.Quality > 50 ? 50 : this.Quality;
+        }
+
+        public void DecreaseQuality(int increment)
+        {
+            this.Quality = this.Quality - increment;
+            this.Quality = this.Quality < 0 ? 0 : this.Quality;
+        }
     }
 }

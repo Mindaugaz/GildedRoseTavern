@@ -6,26 +6,18 @@ using System.Threading.Tasks;
 
 namespace csharp.Items
 {
+    /// <summary>
+    /// Aging item increases in Quality the older it gets. Example: "Aged Brie"
+    /// </summary>
     public class AgingItem : CustomisableItem
     {
         public AgingItem(Item i) : base(i) { }
-        
 
-        /// <summary>
-        /// Aging item increases in Quality the older it gets. Example: "Aged Brie"
-        /// </summary>
-        public void ChangeQuality()
+        public override void ChangeQuality()
         {
-            if (Quality < 50)
-            {
-                Quality++;
-            }
-
+            //FIX: it should increase quality only ONCE according to documentation
+            IncreaseQuality(1);
             SellIn--;
-            if (SellIn < 0 && Quality < 50)
-            {
-                Quality++;
-            }
         }
     }
 }

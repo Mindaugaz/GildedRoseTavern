@@ -6,30 +6,20 @@ using System.Threading.Tasks;
 
 namespace csharp.Items
 {
+    /// <summary>
+    /// Conjured items degrade in Quality twice as fast as normal items
+    /// </summary>
     public class ConjuredItem : CustomisableItem
     {
         public ConjuredItem(Item i) : base(i) { }
-    
-        public void ChangeQuality()
+
+        public override void ChangeQuality()
         {
-            if (Quality > 0)
-            {
-                Quality--;
-            }
-
-            if (Quality > 0)
-            {
-                Quality--;
-            }
-
+            DecreaseQuality(2);
             SellIn--;
-            if (SellIn < 0 && Quality > 0)
+            if (SellIn < 0)
             {
-                Quality--;
-                if (Quality > 0)
-                {
-                    Quality--;
-                }
+                DecreaseQuality(2);
             }
         }
     }
